@@ -46,13 +46,13 @@ Memória stack e heap
 
 Encapsulamento
 
+Lançamento de Exceções
+
 ---
 
 ## 14/08/2025 - Quinta-feira
 
-Lançamento de Exceções
-
-Aplicação de lista de exercícios L02.
+Aplicação de lista de exercícios L02. (Extra classe)
 
 ---
 
