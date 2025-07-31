@@ -14,6 +14,16 @@ Paradigmas de programação.
 
 Benefícios da programação orientada a objetos.
 
+---
+
+## 05/08/2025 - Terça-feira
+
+Prova de Suficiência
+
+---
+
+## 07/08/2025 - Quinta-feira
+
 Atributos e métodos.
 
 Diagrama de classes UML.
@@ -26,19 +36,9 @@ Lista de exercícios L01
 
 ---
 
-## 05/08/2025 - Terça-feira
-
-Prova de Suficiência
-
----
-
-## 07/08/2025 - Quinta-feira
-
-Correção da lista de exercícios L01.
-
----
-
 ## 12/08/2025 - Terça-feira
+
+Correção lista L01.
 
 Tipo referência.
 
