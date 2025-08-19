@@ -6,6 +6,12 @@ public class ContaBancaria {
     private String titular;
     private double saldo;
 
+    public static int quantidadeContas;
+
+    public ContaBancaria() {
+        quantidadeContas++;
+    }
+
     public String getNumero() {
         return numero;
     }

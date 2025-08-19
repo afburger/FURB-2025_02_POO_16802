@@ -43,6 +43,8 @@ public class App {
         System.out.println("Titular conta 2: " + conta2.getTitular());
         System.out.println("Saldo da conta 2: " + conta2.getSaldo());
 
+        System.out.println("Quandiade de contas criadas: " + ContaBancaria.quantidadeContas);
+
     }
 }
 
