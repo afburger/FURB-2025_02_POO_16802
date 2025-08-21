@@ -14,6 +14,12 @@ public class AppVariaveisMetodosEstaticos {
 
         System.out.println("Número elevado ao quadrado: " + Math.pow(numero, 2));
 
+        LivroVariavelEstatica l1 = new LivroVariavelEstatica();
+        LivroVariavelEstatica l2 = new LivroVariavelEstatica();
+
+        // Usando a variável estática
+        System.out.println("Valor da variável estática: " + LivroVariavelEstatica.quantidadeLivros);
+
     }
 
     public static void imprimeMensagem() {
