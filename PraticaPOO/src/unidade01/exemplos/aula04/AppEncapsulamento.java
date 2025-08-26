@@ -1,4 +1,4 @@
-package unidade01.exemplos.aula02;
+package unidade01.exemplos.aula04;
 
 public class AppEncapsulamento {
 

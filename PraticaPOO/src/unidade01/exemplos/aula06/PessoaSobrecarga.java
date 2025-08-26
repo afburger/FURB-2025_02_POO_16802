@@ -1,16 +1,10 @@
-package unidade01.exemplos.aula03;
+package unidade01.exemplos.aula06;
 
-public class PessoaConstrutoresDois {
+public class PessoaSobrecarga {
 
     private double altura;
     private double peso;
     private String nome;
-
-    public PessoaConstrutoresDois(double altura, double peso, String nome) {
-        this.altura = altura;
-        this.peso = peso;
-        this.nome = nome;
-    }
 
     public double getAltura() {
         return altura;
@@ -36,8 +30,17 @@ public class PessoaConstrutoresDois {
         this.nome = nome;
     }
 
-    double calcularImc() {
+    // Exemplo de sobrecarga de métodos
+    public double calcularImc() {
         return peso / (altura * altura);
     }
-    
+
+    public double calcularImc(double normal) {
+        double imc = calcularImc();
+        if (imc <= normal) {
+            System.out.println("O imc calculado está dentro do normal");
+        }
+        return imc;
+    }
+
 }
