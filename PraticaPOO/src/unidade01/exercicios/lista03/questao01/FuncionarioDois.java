@@ -26,7 +26,11 @@ public class FuncionarioDois {
 	}
 
 	public void setSalario(double salario) {
-		this.salario = salario;
+		if (salario < 0) {
+			System.out.println("Salário inválido");
+		} else {
+			this.salario = salario;
+		}
 	}
 
 	public double getSalario() {
