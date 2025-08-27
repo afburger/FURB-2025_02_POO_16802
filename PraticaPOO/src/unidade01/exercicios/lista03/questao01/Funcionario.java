@@ -26,7 +26,11 @@ public class Funcionario {
 	}
 
 	public void setSalario(double salario) {
-		this.salario = salario;
+		if (salario < 0) {
+			System.out.println("Salário inválido");
+		} else {
+			this.salario = salario;
+		}
 	}
 
 	public double getSalario() {
@@ -50,33 +54,33 @@ public class Funcionario {
 				// Calcular da faixa 3
 				diferenca = salario - faixa2;
 				imposto += diferenca * (percentualFaixa3 / cemPorcento);
-			} else if (salario <= 4664.68) {
+			} else if (salario <= faixa4) {
 				// Calcular da faixa 2
-				diferenca = 2826.65 - 1903.98;
-				imposto = diferenca * (7.5 / 100);
+				diferenca = faixa2 - faixa1;
+				imposto = diferenca * (percentualFaixa2 / cemPorcento);
 
 				// Calcular da faixa 3
-				diferenca = 3751.05 - 2826.65;
-				imposto += diferenca * (15.0 / 100);
+				diferenca = faixa3 - faixa2;
+				imposto += diferenca * (percentualFaixa3 / cemPorcento);
 
 				// Calcular da faixa 4
-				diferenca = salario - 3751.05;
-				imposto += diferenca * (22.5 / 100);
+				diferenca = salario - faixa3;
+				imposto += diferenca * (percentualFaixa4 / cemPorcento);
 			} else {
 				// Calcular da faixa 2
-				diferenca = 2826.65 - 1903.98;
-				imposto = diferenca * (7.5 / 100);
+				diferenca = faixa2 - faixa1;
+				imposto = diferenca * (percentualFaixa2 / cemPorcento);
 
 				// Calcular da faixa 3
-				diferenca = 3751.05 - 2826.65;
-				imposto += diferenca * (15.0 / 100);
+				diferenca = faixa3 - faixa2;
+				imposto += diferenca * (percentualFaixa3 / cemPorcento);
 
 				// Calcular da faixa 4
-				diferenca = 4664.68 - 3751.05;
-				imposto += diferenca * (22.5 / 100);
+				diferenca = faixa4 - faixa3;
+				imposto += diferenca * (percentualFaixa4 / cemPorcento);
 
-				diferenca = salario - 4664.68;
-				imposto += diferenca * (27.5 / 100);
+				diferenca = salario - faixa4;
+				imposto += diferenca * (percentualFaixa5 / cemPorcento);
 			}
 		}
 		return imposto;
