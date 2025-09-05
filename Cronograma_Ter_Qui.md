@@ -10,9 +10,7 @@
 
 Apresentação do plano de ensino.
 
-Paradigmas de programação.
-
-Benefícios da programação orientada a objetos.
+Conceitos básicos de POO.
 
 ---
 
@@ -40,13 +38,9 @@ Lista de exercícios L01
 
 Correção lista L01.
 
-Tipo referência.
+Diagrama de Objeto  
 
-Memória stack e heap
-
-Encapsulamento
-
-Lançamento de Exceções
+Escopo de variáveis
 
 ---
 
@@ -60,7 +54,9 @@ Aplicação de lista de exercícios L02. (Extra classe)
 
 Correção lista L02.
 
-Documentação javadoc.
+Diagrama de Objeto  
+
+Escopo de variáveis
 
 Sobrecarga de métodos e construtores
 
@@ -76,33 +72,19 @@ Correção da Lista L03.
 
 ## 26/08/2025 - Terça-feira
 
-Arquitetura em camadas.
+Lançamento de exceção.
 
-Aplicação da Lista L04 e da Lista L05
+Tratamento de exceção.  
 
-Introdução a qualidade de software.
-
-Plano de Testes.
-
-Framework Junit.
+Propagação de exceção.
 
 ---
 
 ## 28/08/2025 - Quinta-feira
 
-Correção das Listas L04 e L05.
+JAVADOC
 
-Introdução às associações.
-
-Associação reflexiva
-
-Associações com multiplicidade 0..1 ou 1.
-
-Tradução para o java.
-
-Aplicação da Lista L06.
-
-Aplicação de lista L07a
+Lista de exercícios L04
 
 ---
 
@@ -114,31 +96,39 @@ Feriado
 
 ## 04/09/2025 - Quinta-feira
 
-Prova 01
+Relacionamentos
+
+Mapeamentos
+
+ArrayList 
+
+Relacionamento entre classes maior que 1, 
+
+Dependência
+
+Especialização de associação.
+
+Lista de exercícios L05
 
 ---
 
 ## 09/09/2025 - Terça-feira
 
-Correção lista L06 e L07
+Lista de exercícios L05
 
-Correção da Prova 01
+Correção da Lista L05
 
 ---
 
 ## 11/09/2025 - Quinta-feira
 
-Correção Lista L07a.
+Preparação para prova
 
 ---
 
 ## 16/09/2025 - Terça-feira
 
-ArrayList.
-
-Mapeamento de diagrama de classes para tradução de relacionamentos com multiplicidade acima de 1.
-
-Dependencia, Agregação e Composição.
+Prova 01
 
 ---
 
