@@ -134,6 +134,12 @@ Prova 01
 
 ## 18/09/2025 - Quinta-feira
 
+Testes unitários
+
+---
+
+## 23/09/2025 - Terça-feira
+
 Introdução a Herança de classes.
 
 Hierarquia de herança.
@@ -143,12 +149,6 @@ Sobrescrita de métodos.
 Métodos protegidos.
 
 Aplicação da Lista 09.
-
----
-
-## 23/09/2025 - Terça-feira
-
-Correção Lista 09.
 
 ---
 
