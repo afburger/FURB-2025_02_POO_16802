@@ -1,7 +1,6 @@
 package unidade02.exercicios.lista05;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Representa um plano de treino, contendo uma lista de exercícios e associado a um aluno.

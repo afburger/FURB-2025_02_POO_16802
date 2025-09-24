@@ -1,7 +1,5 @@
 package unidade01.exemplos.aula07;
 
-import unidade01.exercicios.lista03.questao01.Funcionario;
-
 import java.util.Scanner;
 
 public class ExemploExceptionApp {

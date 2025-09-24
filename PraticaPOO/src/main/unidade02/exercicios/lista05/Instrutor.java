@@ -1,7 +1,6 @@
 package unidade02.exercicios.lista05;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Representa um instrutor de academia, com seus dados pessoais, alunos e mentor.

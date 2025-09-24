@@ -11,6 +11,9 @@ public class Empresa {
 
 	public Empresa(String nome, String cnpj) {
 		this.nome = nome;
+		if (cnpj == null || cnpj.isBlank()) {
+			throw new IllegalArgumentException("CNPJ é obrigatório");
+		}
 		this.cnpj = cnpj;
 		funcionarios = new ArrayList<>();
 	}
@@ -23,7 +26,7 @@ public class Empresa {
 		return cnpj;
 	}
 
-	public double cacularFolhaSalarioal() {
+	public double cacularFolhaSalarial() {
 		double totalSalario = 0;
 		for (Funcionario f : funcionarios) {
 			totalSalario = totalSalario + f.getSalario();
@@ -39,6 +42,7 @@ public class Empresa {
 
 	public void adicionarFuncionario(Funcionario funcionario) {
 		funcionarios.add(funcionario);
+		funcionario.setEmpresa(this);
 	}
 
 	public void removerFuncionario(Funcionario funcionario) {
