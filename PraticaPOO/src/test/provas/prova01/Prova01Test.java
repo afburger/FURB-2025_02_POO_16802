@@ -88,7 +88,7 @@ public class Prova01Test {
     @Order(2)
     void testAplicaAumento() {
         empresa2.aplicarAumento(10);
-		assertEquals(6600.0, empresa2.cacularFolhaSalarial(), 0.01);
+		assertEquals(6600.0, empresa2.calcularFolhaSalarial(), 0.01);
     }
 
 	@Test
@@ -162,9 +162,9 @@ public class Prova01Test {
 		Funcionario func3 = new Funcionario("Funcionario 7", "777.777.777-77", 3000.0);
 		empresa2.adicionarFuncionario(func3);
 		Funcionario funcionario = empresa2.pesquisarFuncionario("777.777.777-77");
-		assertEquals(9600.0, empresa2.cacularFolhaSalarial(), 0.01);
+		assertEquals(9600.0, empresa2.calcularFolhaSalarial(), 0.01);
 		empresa2.removerFuncionario(funcionario);
-		assertEquals(6600.0, empresa2.cacularFolhaSalarial(), 0.01);
+		assertEquals(6600.0, empresa2.calcularFolhaSalarial(), 0.01);
 
 	}
 

@@ -26,7 +26,7 @@ public class Empresa {
 		return cnpj;
 	}
 
-	public double cacularFolhaSalarial() {
+	public double calcularFolhaSalarial() {
 		double totalSalario = 0;
 		for (Funcionario f : funcionarios) {
 			totalSalario = totalSalario + f.getSalario();
