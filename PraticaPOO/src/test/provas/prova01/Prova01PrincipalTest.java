@@ -26,7 +26,8 @@ public class Prova01PrincipalTest {
 	@Order(2)
 	void testClasseFuncionario() {
 		Funcionario funcionario = new Funcionario("Nome", "CPF", 1000.00);
-		assertNotNull(funcionario.getNome());
+//		assertNotNull(funcionario.getNome());
+		assertEquals("Nome", funcionario.getNome());
 		assertNotNull(funcionario.getCpf());
 		funcionario.aplicaAumento(10.0);
 		assertEquals(1100.00, funcionario.getSalario(), 0.01);
