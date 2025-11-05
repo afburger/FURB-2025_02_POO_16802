@@ -1,11 +1,14 @@
 package unidade05;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,7 +22,7 @@ public class ArquivoBinario3Manipulacao {
 	public static void main(String[] args) {
 		// Adiciona algumas pessoas
 		gravarPessoa(new PessoaBin(1, "Felipe", 30));
-		gravarPessoa(new PessoaBin(2, "André", 34));
+		gravarPessoa(new PessoaBin(2, "Andre", 34));
 
 		// Atualiza a pessoa com ID 1
 		atualizarPessoa(1, "Felipe Atualizado", 31);
@@ -31,108 +34,114 @@ public class ArquivoBinario3Manipulacao {
 
 	// Grava um novo objeto Pessoa no final do arquivo
 	public static void gravarPessoa(PessoaBin pessoa) {
+		// Mesmo para inserir precisa ler e gravar o arquivo todo novamente, pois o OutputStream cria sempre um cabeçalho a cada inserção.
+		File arquivo = new File(FILE_PATH);
+		List<PessoaBin> pessoas = new ArrayList<>();
+
+		// Lê todos os objetos do arquivo
+		if (arquivo.exists()) {
+			try {
+				ObjectInputStream ois = new ObjectInputStream(new FileInputStream(arquivo));
+				while (true) {
+					try {
+						PessoaBin pes = (PessoaBin) ois.readObject();
+						pessoas.add(pes);
+					} catch (EOFException e) {
+						break; // Fim do arquivo
+					}
+				}
+				ois.close();
+			} catch (IOException | ClassNotFoundException e) {
+				System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+				return;
+			}
+		}
+		// Adiciona o novo registro ao final da lista
+		pessoas.add(pessoa);
 
 		try {
-			RandomAccessFile raf = new RandomAccessFile(FILE_PATH, "rw");
-		    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		    ObjectOutputStream oos = new ObjectOutputStream(baos);
-
-			oos.writeObject(pessoa);
+			FileOutputStream fos = new FileOutputStream(arquivo, false);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			for (PessoaBin p : pessoas) {
+				oos.writeObject(p);
+			}
+			// Envia as atualizações para o arquivo.
 			oos.flush();
-			byte[] data = baos.toByteArray();
-
-			// Move para o fim do arquivo
-			raf.seek(raf.length());
-
-			// Grava o tamanho do objeto
-			raf.writeInt(data.length);
-
-			// Grava o objeto serializado
-			raf.write(data);
+			// Fecha o arquivo.
+			oos.close();
 		} catch (IOException e) {
-			System.out.println("Erro ao gravar pessoa " + e.getMessage());
+			System.out.println("Erro ao gravar o arquivo: " + e.getMessage());
 		}
 	}
 
 	// Atualiza uma Pessoa pelo ID
-	public static void atualizarPessoa(int codigo, String novoNome, int novaIdade)  {
+	public static void atualizarPessoa(int codigo, String novoNome, int novaIdade) {
+		File arquivo = new File(FILE_PATH);
+		List<PessoaBin> pessoas = new ArrayList<>();
 
-		// Faz a leitura e acesso do arquivo.
-		try {
-			// Inicia o objeto RandomAccessFile em modo de leitura e escrita "RW".
-			RandomAccessFile raf = new RandomAccessFile(FILE_PATH, "rw");
-			// Percorre o arquivo até o final
-			while (raf.getFilePointer() < raf.length()) {
-
-				// Lê a posição
-				long posicaoInicio = raf.getFilePointer();
-				// Lê o tamanho do objeto
-				int tamanhoObjeto = raf.readInt();
-				// Cria um array de bytes para armazenar o objeto completo.
-				byte[] data = new byte[tamanhoObjeto];
-				// Lê o objeto completo.
-				raf.readFully(data);
-
-				// Cria um ObjectInputStream para ler e converter o objeto.
-				ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
-				// Converte o objeto lido.
-				PessoaBin pessoa = (PessoaBin) ois.readObject();
-
-				// Verifica se o código da pessoa é o mesmo código informado para atualizar.
-				if (pessoa.getCodigo() == codigo) {  // Encontra a pessoa com o mesmo CODIGO
-					pessoa.setNome(novoNome);
-					pessoa.setIdade(novaIdade);
-
-					// Cria um ObjectOutputStream para gravar as alterações.
-					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			        ObjectOutputStream oos = new ObjectOutputStream(baos);
-
-					// Prepara os dados para serem escritos no arquivo.
-					oos.writeObject(pessoa);
-					// Faz a alteração no stream.
-					oos.flush();
-					// Converte esses dados para um array de bytes novamente.
-					byte[] novosDados = baos.toByteArray();
-
-					// Verifica se teve alguma alteração no tamanho do objeto.
-					if (novosDados.length <= tamanhoObjeto) {
-						// altera a posição do ponteiro
-						raf.seek(posicaoInicio + 4);
-						// atualiza os dados no arquivo.
-						raf.write(novosDados);
-					} else {
-						System.out.println("Erro: Novo objeto excede o tamanho do espaço reservado.");
-						// TODO: Para não acontecer esse erro, uma possibilidade
+		// Lê todos os objetos do arquivo
+		if (arquivo.exists()) {
+			try {
+				ObjectInputStream ois = new ObjectInputStream(new FileInputStream(arquivo));
+				while (true) {
+					try {
+						PessoaBin pessoa = (PessoaBin) ois.readObject();
+						pessoas.add(pessoa);
+					} catch (EOFException e) {
+						break; // Fim do arquivo
 					}
 				}
+			} catch (IOException | ClassNotFoundException e) {
+				System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+				return;
 			}
-		} catch (ClassNotFoundException | IOException e) {
-			System.out.println("Erro ao ler o arquivo" + e.getMessage());
+		}
+
+		// Atualiza a pessoa com o código correspondente
+		boolean encontrou = false;
+		for (PessoaBin pessoa : pessoas) {
+			if (pessoa.getCodigo() == codigo) {
+				pessoa.setNome(novoNome);
+				pessoa.setIdade(novaIdade);
+				encontrou = true;
+				break;
+			}
+		}
+
+		if (!encontrou) {
+			System.out.println("Pessoa com código " + codigo + " não encontrada.");
+			return;
+		}
+
+		// Regrava todas as pessoas no arquivo (sobrescreve o conteúdo)
+		// No FileOutputStream, passar true se deseja adicionar informações no arquivo e false se quiser sobreescrever todos os dados.
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(arquivo, false))) {
+			for (PessoaBin pessoa : pessoas) {
+				oos.writeObject(pessoa);
+			}
+			System.out.println("Arquivo atualizado com sucesso!");
+		} catch (IOException e) {
+			System.out.println("Erro ao escrever no arquivo: " + e.getMessage());
 		}
 	}
 
 	// Exibe todas as Pessoas no arquivo
 	public static void listarPessoas() {
+		File arquivo = new File(FILE_PATH);
 		try {
-			// Inicia o objeto RandomAccessFile em modo de leitura "R".
-			RandomAccessFile raf = new RandomAccessFile(FILE_PATH, "r");
-			// Percorre o arquivo até o final
-			while (raf.getFilePointer() < raf.length()) {
+			FileInputStream fis = new FileInputStream(arquivo);
+			// Cria um ObjectInputStream para ler os bytes e converter em objetos.
+			ObjectInputStream ois = new ObjectInputStream(fis);
 
-				// Lê o tamanho do objeto
-				int tamanhoObjeto = raf.readInt();
-				// Cria um array de bytes para armazenar o objeto completo.
-				byte[] data = new byte[tamanhoObjeto];
-				// Lê o objeto completo.
-				raf.readFully(data);
-
-				// Cria um ObjectInputStream para ler os bytes e converter em objetos.
-				ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
-				// Faz o cast do objeto
-				PessoaBin pessoa = (PessoaBin) ois.readObject();
-				// Imprime no console o objeto pessoa.
-				System.out.println(pessoa);
-
+			// Faz a leitura até o final do arquivo.
+			while (true) {
+				try {
+					PessoaBin pessoa = (PessoaBin) ois.readObject();
+					System.out.println(pessoa);
+				} catch (EOFException e) {
+					// Quando lançar a exceção é porquê chegou ao final do arquivo. Então para o loop
+					break;
+				}
 			}
 		} catch (IOException | ClassNotFoundException e) {
 			System.out.println("Erro ao ler o arquivo" + e.getMessage());
