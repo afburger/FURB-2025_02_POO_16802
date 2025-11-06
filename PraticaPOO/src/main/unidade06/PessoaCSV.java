@@ -39,6 +39,10 @@ public class PessoaCSV {
 
 	@Override
 	public String toString() {
+		return nome + " - " + idade;
+	}
+
+	public String exportFile() {
 		return id + "," + nome + "," + idade;
 	}
 }

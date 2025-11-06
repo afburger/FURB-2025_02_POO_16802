@@ -13,7 +13,7 @@ public class ArquivoTexto2Leitura {
 
 	public static void main(String[] args) {
 		// Instância e cria o arquivo se necessário.
-		File arquivo = new File("C:\\temp\\arquiviTexto.txt");
+		File arquivo = new File("C:\\temp\\arquivoTexto.txt");
 		try {
 			// Inicia um scanner para fazera leitura.
 			Scanner sc = new Scanner(arquivo, "UTF-8");

@@ -14,12 +14,13 @@ public class ArquivoTexto1Escrita {
 
 	public static void main(String[] args) {
 		// Instância e cria o arquivo se necessário.
-		File arquivo = new File("C:\\temp\\arquiviTexto.txt");
+		File arquivo = new File("C:\\temp\\arquivoTexto.txt");
 		try {
 			// Instância o objeto responsável por inserir dados no arquivo.
 			PrintWriter arquivoTexto = new PrintWriter(arquivo, "UTF-8");
 			// Adiciona as informações
 			arquivoTexto.println("Texto linha um");
+			arquivoTexto.println("àáéèçäü");
 			arquivoTexto.println(true);
 			arquivoTexto.println(2.50);
 			// Fecha e grava o arquivo

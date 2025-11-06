@@ -41,11 +41,13 @@ public class ArquivoTexto3Manipulacao {
 		try {
 			FileWriter fw = new FileWriter(FILE_PATH, StandardCharsets.UTF_8, true);
 			pw = new PrintWriter(fw);
-			pw.println(pessoa.toString());
+			pw.println(pessoa.exportFile());
 		} catch (IOException e) {
 			System.out.println("Erro ao gravar o arquivo: " + e.getMessage());
 		} finally {
-			pw.close();
+			if (pw != null) {
+				pw.close();
+			}
 		}
 	}
 
@@ -98,7 +100,7 @@ public class ArquivoTexto3Manipulacao {
 					pessoa.setIdade(novaIdade);
 				}
 				// Printa todas as pessoas novamente no arquivo.
-				pw.println(pessoa.toString());
+				pw.println(pessoa.exportFile());
 
 			}
 			pw.close();
