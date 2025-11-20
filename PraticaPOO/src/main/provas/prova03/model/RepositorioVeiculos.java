@@ -19,7 +19,7 @@ import unidade06.PessoaBin;
  */
 public class RepositorioVeiculos {
 
-	public static final String CAMINHO_ARQUIO = "C:\\temp\\prova3.bin";
+	public static final String CAMINHO_ARQUIO = "C:\\temp\\prova3veiculos.bin";
 
 	private List<Veiculo> veiculos;
 
@@ -35,6 +35,9 @@ public class RepositorioVeiculos {
 		return veiculos;
 	}
 
+	/**
+	 * Retorna o veículo de acordo com indice.
+	 */
 	public Veiculo getVeiculoPorIndex(int index) {
 		return veiculos.get(index);
 	}

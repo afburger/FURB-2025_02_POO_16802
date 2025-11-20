@@ -46,22 +46,37 @@ public class VeiculoPainel extends JPanel {
 		btnAdicionar.addActionListener(acao);
 	}
 
+	/**
+	 * Para retornar a informação da placa
+	 */
 	public String getPlaca() {
 		return txtPlaca.getText();
 	}
 
+	/**
+	 * Para retornar a informação do modelo
+	 */
 	public String getModelo() {
 		return txtModelo.getText();
 	}
 
+	/**
+	 * Para retornar a informação da marca
+	 */
 	public String getMarca() {
 		return txtMarca.getText();
 	}
 
+	/**
+	 * Para retornar a informação do ano
+	 */
 	public int getAno() {
 		return Integer.parseInt(txtAno.getText());
 	}
 
+	/**
+	 * Método para limpar os campos do formulário.
+	 */
 	public void limparCampos() {
 		txtPlaca.setText(null);
 		txtModelo.setText(null);
